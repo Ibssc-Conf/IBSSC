@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Conference 2025 | Assam University</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">IBSSC<span>2025</span></div>
+  <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="itinerary.html">Itinerary</a></li>    
+    <li><a href="pricing.html">Pricing</a></li>
+
+  </ul>
+</nav>
+
+<main class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>INDO-BHUTAN SOCIAL SCIENCE  CONFERENCE</h1>
+    <p>Department of Business Administration,<br>Assam University Silchar</p>
+    <p class="date">03 -06 September, 2025</p>
+    <p>in Academic Collaboration with</p>
+    <p> Paro College of Education, Royal University of Bhutan</p>
+    <p>in Association with,<br>Silchar Management Association.</p>
+    <p class="collab">Publishing partner: Atlantis Press (Springer Nature)</p>
+    <div class="partner-section">
+      <img src="logo.webp" alt="Atlantis Press logo" class="partner-logo">
+    </div>
+    
+    <p class="date">Venue: Paro College of Education, Paro, Bhutan</p>
+
+    <div class="countdown" id="countdown">
+      <div><span id="days">00</span><small>Days</small></div>
+      <div><span id="hours">00</span><small>Hours</small></div>
+      <div><span id="minutes">00</span><small>Minutes</small></div>
+    </div>
+    <p class="countdown-label">Offline Paper Submissions Limit Exceeded. Now onwards Abstract Submission for only Online Presentation shall be considered. Sorry for Inconvenience if any.</p>
+    <div class="cta-buttons">
+      
+        <a href="pricing.html" class="btn primary">Pricing</a>
+        <a href="contact.html" class="btn primary">Contact</a>
+      
+    </div>    
+  </div>
+</main>
+
+<footer>Disclaimer: The Hospitality, Transportation Fooding, Lodging and other necessary arrangement in Bhutan including Border Transfer rests under the supervision of Local Organising Secretary of Bhutan. Assam University is responsible for Academic Aspects of the Conference.</footer>
+
+<button class="floating-toggle" id="theme-toggle" title="Toggle Theme">🌙</button>
+<script>document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-toggle');
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  // Theme toggle
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+
+  // Mobile menu toggle
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Deadline setup
+  const targetDate = new Date("July 30, 2025 00:00:00").getTime();
+  const now = new Date().getTime();
+
+  // Utility to hide buttons
+  const hideButton = (selector) => {
+    const btn = document.querySelector(selector);
+    if (btn) btn.style.display = "none";
+  };
+
+  if (now >= targetDate) {
+    // Hide countdown and label
+    const countdownEl = document.getElementById("countdown");
+    const countdownLabel = document.querySelector(".countdown-label");
+
+    if (countdownEl) countdownEl.innerHTML = "<p class='closed'>Submission Closed</p>";
+    if (countdownLabel) countdownLabel.style.display = "none";
+
+    // Hide buttons
+    hideButton("a[href$='submit']");
+    hideButton("a[href$='signup']");
+    hideButton("a[href$='visitor_registration']");
+  } else {
+    // Live countdown
+    const countdown = () => {
+      const gap = targetDate - new Date().getTime();
+      const day = 1000 * 60 * 60 * 24;
+      const hour = 1000 * 60 * 60;
+      const minute = 1000 * 60;
+
+      document.getElementById("days").innerText = String(Math.floor(gap / day)).padStart(2, '0');
+      document.getElementById("hours").innerText = String(Math.floor((gap % day) / hour)).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(Math.floor((gap % hour) / minute)).padStart(2, '0');
+    };
+
+    setInterval(countdown, 1000);
+  }
+});
+</script>
+</body>
+</html>
